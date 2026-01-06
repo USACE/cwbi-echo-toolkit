@@ -15,6 +15,7 @@ import (
 )
 
 type (
+	// S3StaticConfig define config for S3Static
 	S3StaticConfig struct {
 		// Skipper defines a function to skip middleware. Returning true skips processing
 		// the middleware.
@@ -63,7 +64,10 @@ func DefaultSkipper(echo.Context) bool {
 	return false
 }
 
-// IgnoreBase
+// IgnoreBase struct method returning a new path using IgnoreBaseRegex
+//
+// Parameter:
+// pin returns as a string
 func (s *S3StaticConfig) IgnoreBase(pin string) (pout string, err error) {
 	re, err := regexp.Compile(s.IgnoreBaseRegex)
 	if err != nil {
@@ -84,7 +88,7 @@ func (s *S3StaticConfig) IgnoreBase(pin string) (pout string, err error) {
 	return pout, err
 }
 
-// S3Satic
+// S3Satic middleware returning S3StaticWithConfig with Default configurations
 func S3Satic(S3StaticConfig S3StaticConfig) echo.MiddlewareFunc {
 	c := DefaultS3StaticConfig
 	return S3StaticWithConfig(c)
