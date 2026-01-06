@@ -89,7 +89,7 @@ var (
 ```
 
 <a name="DatabaseSetApplicationWithConfig"></a>
-## func [DatabaseSetApplicationWithConfig](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/dbTransactions.go#L94>)
+## func DatabaseSetApplicationWithConfig
 
 ```go
 func DatabaseSetApplicationWithConfig(dbCfg DatabaseTransaction) echo.MiddlewareFunc
@@ -98,7 +98,7 @@ func DatabaseSetApplicationWithConfig(dbCfg DatabaseTransaction) echo.Middleware
 DatabaseSetApplicationWithConfig middleware with DatabaseTransation configuration setting DB configurations
 
 <a name="DatabaseTransactionWithConfig"></a>
-## func [DatabaseTransactionWithConfig](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/dbTransactions.go#L57>)
+## func DatabaseTransactionWithConfig
 
 ```go
 func DatabaseTransactionWithConfig(dbCfg DatabaseTransaction) echo.MiddlewareFunc
@@ -107,7 +107,7 @@ func DatabaseTransactionWithConfig(dbCfg DatabaseTransaction) echo.MiddlewareFun
 DatabaseTransactionWithConfig middleware with DatabaseTransaction configuration determining DB state
 
 <a name="DefaultAppkeySkipper"></a>
-## func [DefaultAppkeySkipper](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/appkeyAuthenticate.go#L26>)
+## func DefaultAppkeySkipper
 
 ```go
 func DefaultAppkeySkipper(c echo.Context) bool
@@ -116,7 +116,7 @@ func DefaultAppkeySkipper(c echo.Context) bool
 DefaultAppkeySkipper function returns a boolean for the Appkey Skipper and the value is false.
 
 <a name="DefaultAppkeyValidator"></a>
-## func [DefaultAppkeyValidator](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/appkeyAuthenticate.go#L35>)
+## func DefaultAppkeyValidator
 
 ```go
 func DefaultAppkeyValidator(appkey string) middleware.KeyAuthValidator
@@ -127,7 +127,7 @@ DefaultAppkeyValidator implements Echo middleware.KeyAuthValidator returning boo
 Parameters: appkey is the application key like "bearer abcdefghijklmnop123456789"
 
 <a name="DefaultAuthAppkeyConfig"></a>
-## func [DefaultAuthAppkeyConfig](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/appkeyAuthenticate.go#L14>)
+## func DefaultAuthAppkeyConfig
 
 ```go
 func DefaultAuthAppkeyConfig(appkey string) middleware.KeyAuthConfig
@@ -136,7 +136,7 @@ func DefaultAuthAppkeyConfig(appkey string) middleware.KeyAuthConfig
 DefaultAuthAppkeyConfig implements Echo middleware.KeyAuthConfig configuration with default values
 
 <a name="DefaultDatabaseSkipper"></a>
-## func [DefaultDatabaseSkipper](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/dbTransactions.go#L52>)
+## func DefaultDatabaseSkipper
 
 ```go
 func DefaultDatabaseSkipper(echo.Context) bool
@@ -145,7 +145,7 @@ func DefaultDatabaseSkipper(echo.Context) bool
 DefaultDatabaseSkipper returns false which processes the middleware.
 
 <a name="DefaultErrorHandler"></a>
-## func [DefaultErrorHandler](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/appkeyAuthenticate.go#L55>)
+## func DefaultErrorHandler
 
 ```go
 func DefaultErrorHandler() middleware.KeyAuthErrorHandler
@@ -154,7 +154,7 @@ func DefaultErrorHandler() middleware.KeyAuthErrorHandler
 DefaultErrorHandler implements Echo middleware KeyAuthErrorHandler
 
 <a name="DefaultJwtAuthSkipper"></a>
-## func [DefaultJwtAuthSkipper](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/jwtAuthenticate.go#L62>)
+## func DefaultJwtAuthSkipper
 
 ```go
 func DefaultJwtAuthSkipper(echo.Context) bool
@@ -163,7 +163,7 @@ func DefaultJwtAuthSkipper(echo.Context) bool
 DefaultJwtAuthSkipper returns false which processes the middleware.
 
 <a name="DefaultResourceAcessSkipper"></a>
-## func [DefaultResourceAcessSkipper](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/resourceAccess.go#L54>)
+## func DefaultResourceAcessSkipper
 
 ```go
 func DefaultResourceAcessSkipper(echo.Context) bool
@@ -172,7 +172,7 @@ func DefaultResourceAcessSkipper(echo.Context) bool
 DefaultResourceAcessSkipper returns false which processes the middleware.
 
 <a name="DefaultScopeFromContext"></a>
-## func [DefaultScopeFromContext](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/resourceAccess.go#L65>)
+## func DefaultScopeFromContext
 
 ```go
 func DefaultScopeFromContext(c echo.Context, scopeVariable string) string
@@ -185,7 +185,7 @@ Parameter: scopeVariable is a string, default "symbol" if string is ""
 The scope is typically used here as a District office, therefore scopeVariable would be a path parameter 'symbol', 'office', 'code', etc. in the url path.
 
 <a name="DefaultSkipper"></a>
-## func [DefaultSkipper](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/s3Static.go#L63>)
+## func DefaultSkipper
 
 ```go
 func DefaultSkipper(echo.Context) bool
@@ -194,7 +194,7 @@ func DefaultSkipper(echo.Context) bool
 DefaultSkipper returns false which processes the middleware.
 
 <a name="GetPublicKeyFromCwbiRealm"></a>
-## func [GetPublicKeyFromCwbiRealm](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/cwbiRealm.go#L29>)
+## func GetPublicKeyFromCwbiRealm
 
 ```go
 func GetPublicKeyFromCwbiRealm(url string) (string, error)
@@ -207,7 +207,7 @@ Parameter: url is the URL as a string
 Return: string, error
 
 <a name="GetRsaPublicKey"></a>
-## func [GetRsaPublicKey](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/cwbiRealm.go#L17>)
+## func GetRsaPublicKey
 
 ```go
 func GetRsaPublicKey(publicKey string) (*rsa.PublicKey, error)
@@ -218,7 +218,7 @@ GetRsaPublicKey jwt ParseRSAPublicKeyFromPEM returning rsa.PublicKey
 Parameter: publicKey is the public as a string
 
 <a name="GetRsaPublicKeyFromCwbiRealm"></a>
-## func [GetRsaPublicKeyFromCwbiRealm](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/cwbiRealm.go#L58>)
+## func GetRsaPublicKeyFromCwbiRealm
 
 ```go
 func GetRsaPublicKeyFromCwbiRealm(url string) (*rsa.PublicKey, error)
@@ -231,7 +231,7 @@ Parameter: url is the URL as a string
 Return: \*rsa.PublicKey, error
 
 <a name="ResourceAccessWithConfig"></a>
-## func [ResourceAccessWithConfig](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/resourceAccess.go#L77>)
+## func ResourceAccessWithConfig
 
 ```go
 func ResourceAccessWithConfig(accessConfig ResourceAccessConfig) echo.MiddlewareFunc
@@ -240,7 +240,7 @@ func ResourceAccessWithConfig(accessConfig ResourceAccessConfig) echo.Middleware
 ResourceAccessWithConfig middleware with configuration getting user's role from JWT and checking against defined resource access and roles.
 
 <a name="S3Satic"></a>
-## func [S3Satic](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/s3Static.go#L92>)
+## func S3Satic
 
 ```go
 func S3Satic(S3StaticConfig S3StaticConfig) echo.MiddlewareFunc
@@ -249,7 +249,7 @@ func S3Satic(S3StaticConfig S3StaticConfig) echo.MiddlewareFunc
 S3Satic middleware returning S3StaticWithConfig with Default configurations
 
 <a name="S3StaticWithConfig"></a>
-## func [S3StaticWithConfig](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/s3Static.go#L99>)
+## func S3StaticWithConfig
 
 ```go
 func S3StaticWithConfig(staticConfig S3StaticConfig) echo.MiddlewareFunc
@@ -258,7 +258,7 @@ func S3StaticWithConfig(staticConfig S3StaticConfig) echo.MiddlewareFunc
 S3StaticWithConfig returns S3Static middleware with config See \`S3Static\(\)\`
 
 <a name="StringArrayMatch"></a>
-## func [StringArrayMatch](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/cwbiRealm.go#L71>)
+## func StringArrayMatch
 
 ```go
 func StringArrayMatch(arr1 []string, arr2 []string) bool
@@ -269,7 +269,7 @@ StringArrayMatch checks string arrays for matching values
 Return: true if array1 has value in array2 else false
 
 <a name="assignFieldValue"></a>
-## func [assignFieldValue](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/dbTransactions.go#L144>)
+## func assignFieldValue
 
 ```go
 func assignFieldValue(p any, fieldName string, value any) error
@@ -278,7 +278,7 @@ func assignFieldValue(p any, fieldName string, value any) error
 assignFieldValue sets a value to the struct field
 
 <a name="AuthorizeCustomClaims"></a>
-## type [AuthorizeCustomClaims](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/jwtAuthenticate.go#L41-L52>)
+## type AuthorizeCustomClaims
 
 AuthorizeCustomClaims struct defining claims
 
@@ -298,7 +298,7 @@ type AuthorizeCustomClaims struct {
 ```
 
 <a name="DatabaseTransaction"></a>
-## type [DatabaseTransaction](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/dbTransactions.go#L25-L45>)
+## type DatabaseTransaction
 
 DatabaseTransaction struct defining needed fields to validate and authorize.
 
@@ -327,7 +327,7 @@ type DatabaseTransaction struct {
 ```
 
 <a name="DbConfiguration"></a>
-## type [DbConfiguration](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/dbTransactions.go#L17-L22>)
+## type DbConfiguration
 
 DbConfiguration define config for database table configuration.
 
@@ -341,7 +341,7 @@ type DbConfiguration struct {
 ```
 
 <a name="JwtAuthenticateConfig"></a>
-## type [JwtAuthenticateConfig](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/jwtAuthenticate.go#L17-L38>)
+## type JwtAuthenticateConfig
 
 JwtAuthenticateConfig struct defining configuration fields for validation and authorization
 
@@ -371,7 +371,7 @@ type JwtAuthenticateConfig struct {
 ```
 
 <a name="JwtAuthenticateConfig.AuthParseWithClaims"></a>
-### func \(\*JwtAuthenticateConfig\) [AuthParseWithClaims](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/jwtAuthenticate.go#L68>)
+### func \(\*JwtAuthenticateConfig\) AuthParseWithClaims
 
 ```go
 func (a *JwtAuthenticateConfig) AuthParseWithClaims() echo.MiddlewareFunc
@@ -380,7 +380,7 @@ func (a *JwtAuthenticateConfig) AuthParseWithClaims() echo.MiddlewareFunc
 AuthParseWithClaims middleware with config parsing jwt with claims token lookup is "header:Authorization:Bearer "
 
 <a name="ResourceAccessConfig"></a>
-## type [ResourceAccessConfig](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/resourceAccess.go#L15-L44>)
+## type ResourceAccessConfig
 
 ResourceAccessConfig struct defines fields for resources access configuration
 
@@ -418,7 +418,7 @@ type ResourceAccessConfig struct {
 ```
 
 <a name="S3StaticConfig"></a>
-## type [S3StaticConfig](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/s3Static.go#L19-L51>)
+## type S3StaticConfig
 
 S3StaticConfig define config for S3Static
 
@@ -459,7 +459,7 @@ type S3StaticConfig struct {
 ```
 
 <a name="S3StaticConfig.IgnoreBase"></a>
-### func \(\*S3StaticConfig\) [IgnoreBase](<https://github.com/USACE/cwbi-echo-toolkit/blob/main/s3Static.go#L71>)
+### func \(\*S3StaticConfig\) IgnoreBase
 
 ```go
 func (s *S3StaticConfig) IgnoreBase(pin string) (pout string, err error)
