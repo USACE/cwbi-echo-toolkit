@@ -13,49 +13,47 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type DbConfigurtion struct {
+// DbConfiguration define config for database table configuration.
+type DbConfiguration struct {
 	ID    uuid.UUID `db:"id" json:"id"`
 	Key   string    `db:"key" json:"key"`
 	Value string    `db:"value" json:"value"`
 	Type  string    `db:"type" json:"type"`
 }
 
-type (
-	// ResourceAccessConfig struct defining needed fields to validate and authorize
-	DatabaseTransaction struct {
-		// Skipper defines a function to skip middleware.
-		// Returning true skips processing the middleware.
-		Skipper func(c echo.Context) bool
+// DatabaseTransaction struct defining needed fields to validate and authorize.
+type DatabaseTransaction struct {
+	// Skipper defines a function to skip middleware.
+	// Returning true skips processing the middleware.
+	Skipper func(c echo.Context) bool
 
-		// sql query
-		SQL *string
+	// sql query
+	SQL *string
 
-		// key used in the default query
-		// required when SQL not provided
-		Key *string
+	// Key used in the default query
+	// required when SQL not provided
+	Key *string
 
-		// Application Configuration
-		Config *any
+	// Config Application Configuration
+	Config *any
 
-		// Application Configuration attribute
-		ConfigFieldName *string
+	// ConfigFieldName Application Configuration attribute
+	ConfigFieldName *string
 
-		// database connection pool
-		Connection *pgxpool.Pool
-	}
-)
+	// Connection database connection pool
+	Connection *pgxpool.Pool
+}
 
-var (
-	DefaultDatabaseTransaction = ResourceAccessConfig{
-		Skipper: DefaultDatabaseSkipper,
-	}
-)
+var DefaultDatabaseTransaction = ResourceAccessConfig{
+	Skipper: DefaultDatabaseSkipper,
+}
 
 // DefaultDatabaseSkipper returns false which processes the middleware.
 func DefaultDatabaseSkipper(echo.Context) bool {
 	return false
 }
 
+// DatabaseTransactionWithConfig middleware with DatabaseTransaction configuration determining DB state
 func DatabaseTransactionWithConfig(dbCfg DatabaseTransaction) echo.MiddlewareFunc {
 	if dbCfg.Skipper == nil {
 		dbCfg.Skipper = DefaultDatabaseTransaction.Skipper
@@ -73,7 +71,7 @@ func DatabaseTransactionWithConfig(dbCfg DatabaseTransaction) echo.MiddlewareFun
 			}
 
 			// get the state of the database for the office user admin
-			var dbConfiguration DbConfigurtion
+			var dbConfiguration DbConfiguration
 			if err = pgxscan.Get(context.TODO(), dbCfg.Connection, &dbConfiguration, *dbCfg.SQL); err != nil {
 				return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 			}
@@ -92,6 +90,7 @@ func DatabaseTransactionWithConfig(dbCfg DatabaseTransaction) echo.MiddlewareFun
 	}
 }
 
+// DatabaseSetApplicationWithConfig middleware with DatabaseTransation configuration setting DB configurations
 func DatabaseSetApplicationWithConfig(dbCfg DatabaseTransaction) echo.MiddlewareFunc {
 	if dbCfg.Skipper == nil {
 		dbCfg.Skipper = DefaultDatabaseTransaction.Skipper
@@ -109,7 +108,7 @@ func DatabaseSetApplicationWithConfig(dbCfg DatabaseTransaction) echo.Middleware
 			}
 
 			// get the state of the database for the office user admin
-			var dbConfiguration DbConfigurtion
+			var dbConfiguration DbConfiguration
 			if err = pgxscan.Get(context.TODO(), dbCfg.Connection, &dbConfiguration, *dbCfg.SQL); err != nil {
 				return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 			}
