@@ -11,8 +11,9 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+
 type (
-	// JwtAuthenticateConfig struct defining needed fields to validate and authorize
+	// JwtAuthenticateConfig struct defining configuration fields for validation and authorization
 	JwtAuthenticateConfig struct {
 		// Skipper defines a function to skip middleware
 		// Returning true skips processing the middleware.
@@ -36,7 +37,7 @@ type (
 		SigningMethod string
 	}
 
-	// AuthorizeStandardClaims struct for ParseWithClaims
+	// AuthorizeCustomClaims struct defining claims
 	AuthorizeCustomClaims struct {
 		AuthrorizedParty  string         `json:"azp,omitempty"`
 		ResourceAccess    map[string]any `json:"resource_access,omitempty"`
@@ -57,12 +58,13 @@ var (
 	}
 )
 
-// DefaultSkipper returns false which processes the middleware.
+// DefaultJwtAuthSkipper returns false which processes the middleware.
 func DefaultJwtAuthSkipper(echo.Context) bool {
 	return false
 }
 
-// AuthParseWithClaims
+// AuthParseWithClaims middleware with config parsing jwt with claims
+// token lookup is "header:Authorization:Bearer "
 func (a *JwtAuthenticateConfig) AuthParseWithClaims() echo.MiddlewareFunc {
 	return echojwt.WithConfig(echojwt.Config{
 		ParseTokenFunc: func(c echo.Context, auth string) (any, error) {

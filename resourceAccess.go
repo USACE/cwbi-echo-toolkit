@@ -11,7 +11,7 @@ import (
 )
 
 type (
-	// ResourceAccessConfig struct defining needed fields to validate and authorize
+	// ResourceAccessConfig struct defines fields for resources access configuration
 	ResourceAccessConfig struct {
 		// Skipper defines a function to skip middleware.
 		// Returning true skips processing the middleware.
@@ -55,7 +55,13 @@ func DefaultResourceAcessSkipper(echo.Context) bool {
 	return false
 }
 
-// DefaultScopeFromContext
+// DefaultScopeFromContext returns the scope defined by the path parameter
+//
+// Parameter:
+// scopeVariable is a string, default "symbol" if string is ""
+//
+// The scope is typically used here as a District office, therefore scopeVariable
+// would be a path parameter 'symbol', 'office', 'code', etc. in the url path.
 func DefaultScopeFromContext(c echo.Context, scopeVariable string) string {
 	paramNames := c.ParamNames()
 	for _, name := range paramNames {
@@ -66,7 +72,8 @@ func DefaultScopeFromContext(c echo.Context, scopeVariable string) string {
 	return ""
 }
 
-// AuthResourceAccessWithConfig
+// ResourceAccessWithConfig middleware with configuration getting user's role from JWT and checking
+// against defined resource access and roles.
 func ResourceAccessWithConfig(accessConfig ResourceAccessConfig) echo.MiddlewareFunc {
 	if accessConfig.Skipper == nil {
 		accessConfig.Skipper = DefaultResourceAccessConfig.Skipper

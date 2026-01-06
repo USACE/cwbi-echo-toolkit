@@ -9,6 +9,8 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
+// DefaultAuthAppkeyConfig implements Echo middleware.KeyAuthConfig
+// configuration with default values
 func DefaultAuthAppkeyConfig(appkey string) middleware.KeyAuthConfig {
 	return middleware.KeyAuthConfig{
 		Skipper:      DefaultAppkeySkipper,
@@ -19,12 +21,17 @@ func DefaultAuthAppkeyConfig(appkey string) middleware.KeyAuthConfig {
 	}
 }
 
-// DefaultSkipper returns false which processes the middleware.
+// DefaultAppkeySkipper function returns a boolean for the Appkey Skipper
+// and the value is false.
 func DefaultAppkeySkipper(c echo.Context) bool {
 	return false
 }
 
-// DefaultAppkeyValidator validates the application key
+// DefaultAppkeyValidator implements Echo middleware.KeyAuthValidator returning
+// boolean and error
+//
+// Parameters:
+// appkey is the application key like "bearer abcdefghijklmnop123456789"
 func DefaultAppkeyValidator(appkey string) middleware.KeyAuthValidator {
 	return func(auth string, c echo.Context) (bool, error) {
 		if auth == "" {
@@ -44,7 +51,7 @@ func DefaultAppkeyValidator(appkey string) middleware.KeyAuthValidator {
 	}
 }
 
-// DefaultErrorHandler
+// DefaultErrorHandler implements Echo middleware KeyAuthErrorHandler
 func DefaultErrorHandler() middleware.KeyAuthErrorHandler {
 	return func(err error, c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, map[string]string{"message": err.Error()})
